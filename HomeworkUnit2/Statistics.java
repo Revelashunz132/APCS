@@ -1,112 +1,74 @@
-//John Aston Adams
-//10/24/22
+package unit3;
 
-package HomeworkUnit2;
-
-import java.util.Arrays;
+import java.util.Random;
 
 public class Statistics {
-    private int range;
-    private int total = 0;
-    private int[] ar;
-
-    public Statistics(int r){
-        range = r;
-        int[] array = new int[range];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (int) (Math.random() * 1000 + 1);
-            System.out.println(array[i]);
-            total += array[i];
-            ar = array;
+    int[] data;
+    int[] counter;
+    public Statistics (int a) {
+        data = new int[a];
+        counter= new int[a/50];
+        Random r = new Random();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = (int) (r.nextGaussian()*125 + 500);
+            counter[data[i]/50] ++;
         }
-    }
-
-    public double average(){
-        return (double) total / ar.length;
-    }
-
-    public int largest(){
-        Arrays.sort(ar);
-        return (ar[999]);
-    }
-
-    public int[] distribution(){
-        int[] distribution = new int[21];
-        for (int i = 0; i < ar.length; i++){
-            if (ar[i] <= 50){
-                distribution[0] = distribution[0] + 1;
-            }
-            else if (ar[i] <=100 && ar[i] > 50){
-                distribution[1] = distribution[1] + 1;
-            }
-            else if (ar[i] <=150 && ar[i] > 100){
-                distribution[2] = distribution[2] + 1;
-            }
-            else if (ar[i] <=200 && ar[i] > 150){
-                distribution[3] = distribution[3] + 1;
-            }
-            else if (ar[i] <=250 && ar[i] > 200){
-                distribution[4] = distribution[4] + 1;
-            }
-            else if (ar[i] <=300 && ar[i] > 250){
-                distribution[5] = distribution[5] + 1;
-            }
-            else if (ar[i] <=350 && ar[i] > 300){
-                distribution[6] = distribution[6] + 1;
-            }
-            else if (ar[i] <=400 && ar[i] > 350){
-                distribution[7] = distribution[7] + 1;
-            }
-            else if (ar[i] <=450 && ar[i] > 500){
-                distribution[8] = distribution[8] + 1;
-            }
-            else if (ar[i] <=500 && ar[i] > 450){
-                distribution[9] = distribution[9] + 1;
-            }
-            else if (ar[i] <=550 && ar[i] > 500){
-                distribution[10] = distribution[10] + 1;
-            }
-            else if (ar[i] <=550 && ar[i] > 600){
-                distribution[11] = distribution[11] + 1;
-            }
-            else if (ar[i] <=600 && ar[i] > 550){
-                distribution[12] = distribution[12] + 1;
-            }
-            else if (ar[i] <=650 && ar[i] > 600){
-                distribution[13] = distribution[13] + 1;
-            }
-            else if (ar[i] <=700 && ar[i] > 650){
-                distribution[14] = distribution[14] + 1;
-            }
-            else if (ar[i] <=750 && ar[i] > 700){
-                distribution[15] = distribution[15] + 1;
-            }
-            else if (ar[i] <=800 && ar[i] > 750){
-                distribution[16] = distribution[16] + 1;
-            }
-            else if (ar[i] <=850 && ar[i] > 800){
-                distribution[17] = distribution[17] + 1;
-            }
-            else if (ar[i] <=900 && ar[i] > 850){
-                distribution[18] = distribution[18] + 1;
-            }
-            else if (ar[i] <=950 && ar[i] > 900){
-                distribution[19] = distribution[19] + 1;
-            }
-            else if (ar[i] <=1000 && ar[i] > 950){
-                distribution[20] = distribution[20] + 1;
-            }
-        }
-        return distribution;
-    }
-
-    public static void main(String[] args){
-        Statistics a = new Statistics(1000);
-        System.out.println("Average = " + a.average());
-        System.out.println("Largest = " + a.largest());
-        System.out.println("Distribution = " + Arrays.toString(a.distribution()));
-
         
     }
-}
+    
+    private int getMaxHeight () {
+        int max = 0;
+        for (int i = 0; i < counter.length; i++) {
+            if (counter[i] > max) max = counter[i];
+        }
+        return max;
+    }
 
+    public int getMode() {
+        int max = 0, modeIndex = 0;
+        for (int i = 0; i < counter.length; i++) {
+            if (counter[i] > max) {
+                max = counter[i];
+                modeIndex = i;
+            }
+        }
+        return modeIndex * 50;
+
+    }
+    
+    /**
+     * calculate the mean of the data
+     * pre: none
+     * @return the mean
+     */
+    public int getMean () {
+        int sum = 0;
+        for (int i = 0; i < data.length; i++) {
+            sum += data[i];
+        }
+        return sum/data.length;
+    }
+ 
+    public int[] distribution() {
+        return counter;
+    }
+    
+    public void printDistribution() {
+        int max = getMaxHeight();
+        System.out.println("Max = " + max);
+        for (int level = max; level > 0; level--) {
+            for (int i = 0; i < counter.length; i++) {
+                if (counter[i] < level) System.out.print(" ");
+                else System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main (String[] args) {
+        Statistics myStat = new Statistics(1000);
+        myStat.printDistribution();
+        System.out.println("The mean is " + myStat.getMean());
+        System.out.println("The mode is " + myStat.getMode());
+    }
+}
