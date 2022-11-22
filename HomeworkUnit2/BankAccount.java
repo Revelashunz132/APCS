@@ -14,8 +14,8 @@ public class BankAccount {
 	}
 
     private int id;
-    private String nameOwner;
-    private double balance;
+    String nameOwner;
+    double balance;
 
     public BankAccount (int i, String n, double b) {
         id = i;
@@ -29,6 +29,16 @@ public class BankAccount {
         balance += money;
         totalAsset += money;
         return balance;
+    }
+
+    public double withdraw (double money){
+        if (money < balance){
+            balance -= money;
+            return balance;
+        }
+        else{
+            return -1;
+        }
     }
 
     public String toString() {
