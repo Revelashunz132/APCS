@@ -31,7 +31,7 @@ public class BankCCA {
                 ba[k].withdraw(2000);
             }
         }
-
+// Everything looks like it should work, I don't know why some things don't run and why it prints so many of times
 
         // Part 1: instantiate the rest of the accounts in the array ba with increasing id, name from names, random money between 100 and 10000
 
