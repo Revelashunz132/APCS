@@ -1,7 +1,7 @@
 //John Aston Adams
 //11/22/22
 
-package unit2;
+package HomeworkUnit2;
 
 public class BankCCA {
     public static void main(String args[]) {
