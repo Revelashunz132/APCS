@@ -6,7 +6,7 @@ public  class WriteTester{
     public static void main (String[] args) throws IDEception{
         FileWriter fw = new FileWriter("out.dat");
         PrintWriter output = newPrintWriter(f);
-        output.println("This is a chapel messag ");
+        output.println("This is a chapel message ");
         output.println("56 + 34 = " + (56 + 34));
         output.println(this is the end.);
         output.close();
