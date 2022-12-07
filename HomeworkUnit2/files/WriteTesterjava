@@ -4,7 +4,7 @@ import java.io.*;
 
 public  class WriteTester{
     public static void main (String[] args) throws IDEception{
-        FileWriter fw = new FileWriter("out.dat");
+        FileWriter fw = new FileWriter("out.dat", true);
         PrintWriter output = newPrintWriter(f);
         output.println("This is a chapel message ");
         output.println("56 + 34 = " + (56 + 34));
