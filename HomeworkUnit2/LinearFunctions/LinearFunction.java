@@ -20,7 +20,7 @@ public class LinearFunction implements LinearFunctionMethods {
     }
 
     public double getRoot() {
-        return -yIntercept / slope;
+        return (-1 * yIntercept) / slope;
     }
 
     public double getYvalue(double x) {
