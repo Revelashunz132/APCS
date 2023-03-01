@@ -4,7 +4,7 @@ public class BigO{
     public static void main (String args[]){
         int[] ai = new int[20];
         for(int i = 0; i < ai.length; i++){
-            ai[i] = (int) (Math.randon() * 100 + 1);
+            ai[i] = (int) (Math.random() * 100 + 1);
             System.out.print (ai[i] + " ");
         }
         Scanner kb = new Scanner(System.in);
