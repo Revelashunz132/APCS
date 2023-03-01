@@ -33,6 +33,7 @@ public class BigO{
         for (int nn: ai){
             System.out.print(nn + " ");
         }
+        
         kb.close();
     }
 }
